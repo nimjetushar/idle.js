@@ -148,11 +148,3 @@ export default function IdleProvider(idleConfig, callback) {
 
   return ngip;
 }
-
-// const config = new IdleConfig();
-// config.idle(1800);
-// config.titleDisabled(false);
-// console.log("done");
-// idleProvider(config, function() {
-//   console.log("idle");
-// }).watch();
