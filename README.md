@@ -1,5 +1,7 @@
 # Idle JS
 
+[![GitHub license](https://img.shields.io/github/license/nimjetushar/idle.js.svg)](https://github.com/nimjetushar/idle.js/blob/master/LICENSE)
+
 Detects idle state of the application
 
 ```
