@@ -22,3 +22,44 @@ const idlePrd = idleProvider(config, idleCallback);
 idlePrd.watch()
 
 ```
+
+## Methods
+
+*idleProvider*
+```
+const idlePrd = idleProvider(config, idleCallback);
+
+1: watch: Watch is used to initialize the idle timer
+
+idlePrd.watch()
+
+2: unwatch: This is used to cancel the currently running timer
+
+idlePrd.unwatch()
+
+3: Destroy: This is used to destroy the event whic is used to reset the idle timer. If you call destroy none of the functionality will work as the event itself is destroyed.
+
+idlePrd.destroy()
+
+```
+
+*IdleConfig*
+```
+const config = new IdleConfig();
+
+1: Setting idle timer: This is used to set the idle timer for which the application will get idle complete event idleProvider.idle( specify time in ms ). The input should be in integer. eg- this specify idle time of 1 min Default time is 30 min
+config.idle( 60000 )
+
+2: Auto resume: Based on this the idle timer will resume. By default auto resume is true
+config.autoResume( boolean )
+
+3: Select interrupt: Interrupt are the event for which you want to reset the idle timer. eg- interrupt: 'mousemove keydown DOMMouseScroll mousewheel mousedown touchstart touchmove scroll'
+config.interrupt( string )
+
+4: Disable Title change: This will change the title of the application when application is idle. If this is set to true document's title change will be disabled. By default it is set to false
+config.titleDisabled( boolean )
+
+5: Document title on idle: This is used to change the document title based on your choice of text 
+config.title( string ).
+
+```
