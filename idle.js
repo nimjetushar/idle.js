@@ -41,7 +41,7 @@ export class IdleConfig {
   interrupt(events) {
     if (!events && typeof value !== "string") {
       throw new Error(
-        'event listner must be string. eg:- "mousemove keydown DOMMouseScroll mousewheel"'
+        "event listner must be string. eg:- mousemove, keydown, DOMMouseScroll, mousewheel, etc."
       );
     }
     this._options.interrupt = events;
@@ -69,40 +69,35 @@ export default function IdleProvider(idleConfig, callback) {
       isRunning: false
     },
     options = idleConfig.options,
-    initialDocTitle = document.title,
-    ngip = {
-      watch: () => {
-        state.isRunning = true;
-        clearTimer();
-        toggleDocTitle(false);
-        idleTimer = setTimeout(idleComplete.bind(this), options.idle);
-      },
-      unwatch: () => {
-        state.isRunning = false;
-        toggleDocTitle(false);
-        clearTimer();
-      },
-      destroy: () => {
-        toggleDocTitle(false);
-        document
-          .querySelector(options.container)
-          .removeEventListener(options.interrupt, resetTimer.bind(this));
-      }
-    };
+    initialDocTitle = document.title;
 
   let idleTimer;
+
+  //clear timer
+  function clearTimer() {
+    clearTimeout(idleTimer);
+  }
 
   //reset timer and start idle time from start
   function resetTimer() {
     if (!state.isRunning) return;
 
     clearTimer();
-    idleTimer = setTimeout(idleComplete, options.idle);
+    idleTimer = setTimeout(idleComplete.bind(this), options.idle);
   }
 
-  //clear timer
-  function clearTimer() {
-    clearTimeout(idleTimer);
+  /*
+   * toggle document title
+   * @param {boolean} status - change document title based on status
+   */
+  function toggleDocTitle(status) {
+    document.title = status ? options.title : initialDocTitle;
+  }
+
+  function refreshTitle() {
+    setTimeout(() => {
+      toggleDocTitle(false);
+    }, options.titleRefreshTimer);
   }
 
   //execute callback when idle for specified time
@@ -127,24 +122,30 @@ export default function IdleProvider(idleConfig, callback) {
     }
   }
 
-  function refreshTitle() {
-    setTimeout(() => {
-      toggleDocTitle(false);
-    }, options.titleRefreshTimer);
-  }
-
-  /*
-   * toggle document title
-   * @param {boolean} status - change document title based on status
-   */
-  function toggleDocTitle(status) {
-    document.title = status ? options.title : initialDocTitle;
-  }
-
   // Adding interrupt listener
   document
     .querySelector(options.container)
     .addEventListener(options.interrupt, resetTimer.bind(this));
+
+  const ngip = {
+    watch: () => {
+      state.isRunning = true;
+      clearTimer();
+      toggleDocTitle(false);
+      idleTimer = setTimeout(idleComplete.bind(this), options.idle);
+    },
+    unwatch: () => {
+      state.isRunning = false;
+      toggleDocTitle(false);
+      clearTimer();
+    },
+    destroy: () => {
+      toggleDocTitle(false);
+      document
+        .querySelector(options.container)
+        .removeEventListener(options.interrupt, resetTimer.bind(this));
+    }
+  };
 
   return ngip;
 }
