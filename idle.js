@@ -13,8 +13,7 @@ export class IdleConfig {
     this._options = {
       idle: 1800000, // (default is 30min)
       autoResume: false, // lets events automatically resume (unsets idle state/resets warning)
-      interrupt:
-        "mousemove keydown DOMMouseScroll mousewheel mousedown touchstart touchmove scroll",
+      interrupt: "mousemove keydown DOMMouseScroll mousewheel mousedown touchstart touchmove scroll",
       isTitleDisabled: false, // disable changes in document's title
       title: "Session has expired",
       autoRefreshTitle: false,
@@ -80,7 +79,9 @@ export default function IdleProvider(idleConfig, callback) {
 
   //reset timer and start idle time from start
   function resetTimer() {
-    if (!state.isRunning) return;
+    if (!state.isRunning) {
+      return;
+    }
 
     clearTimer();
     idleTimer = setTimeout(idleComplete.bind(this), options.idle);
