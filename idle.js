@@ -58,7 +58,7 @@ export class IdleConfig {
     if (typeof value === "string") {
       this._options.title = value;
     } else {
-      throw new Error("title value must be boolean");
+      throw new Error("title value must be string");
     }
   }
 }
