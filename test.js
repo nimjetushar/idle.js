@@ -41,7 +41,7 @@ describe("test IdleConfig", () => {
     it("should through error when idle timer value is less than 0", () => {
         const err = () => {
             idleConfigInstance.idle(-10);
-        }
+        };
 
         expect(err).toThrow(Error);
     })
@@ -51,4 +51,4 @@ describe("test IdleProvider", () => {
     it("should contain IdleProvider", () => {
         expect(IdleProvider).toBeDefined();
     });
-})
+});
