@@ -10,7 +10,7 @@ describe("test IdleConfig", () => {
 
     it("should contain IdleConfig", () => {
         expect(IdleConfig).toBeDefined();
-    });
+    })
 
     it("should return options with default param", () => {
         const options = idleConfigInstance.options;
