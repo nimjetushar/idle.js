@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.com/nimjetushar/idle.js.svg?branch=master)](https://travis-ci.com/nimjetushar/idle.js)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/dd702ab0b3b44834ad7c7d9f65c64d99)](https://www.codacy.com/app/tushar/idle.js?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nimjetushar/idle.js&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/dd702ab0b3b44834ad7c7d9f65c64d99)](https://www.codacy.com/app/tushar/idle.js?utm_source=github.com&utm_medium=referral&utm_content=nimjetushar/idle.js&utm_campaign=Badge_Coverage)
 <br/>
 [![GitHub license](https://img.shields.io/github/license/nimjetushar/idle.js.svg)](https://github.com/nimjetushar/idle.js/blob/master/LICENSE)
 
