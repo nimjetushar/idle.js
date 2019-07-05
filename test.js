@@ -48,7 +48,25 @@ describe("test IdleConfig", () => {
 });
 
 describe("test IdleProvider", () => {
+    let config, provider;
+    beforeEach(() => {
+        config = new IdleConfig();
+        provider = IdleProvider(config);
+    })
+
     it("should contain IdleProvider", () => {
         expect(IdleProvider).toBeDefined();
+    });
+
+    it("should contain watch function", () => {
+        expect(provider.watch).toBeDefined();
+    });
+
+    it("should contain unwatch function", () => {
+        expect(provider.unwatch).toBeDefined();
+    });
+
+    it("should contain destroy function", () => {
+        expect(provider.destroy).toBeDefined();
     });
 });
